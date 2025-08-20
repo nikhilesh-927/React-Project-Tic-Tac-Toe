@@ -130,6 +130,7 @@ ul {
   font-weight: bold;
   background-color: #8fcdff;
   animation: glowButton 1s infinite alternate;
+  cursor: pointer;
 }
 
 @keyframes glowButton {

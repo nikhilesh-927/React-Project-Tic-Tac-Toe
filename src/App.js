@@ -24,24 +24,22 @@ function Board({xIsNext, squares, onPlay}){
 
   function handleClick(i){
     setSquaresFilled(squaresFilled + 1);
-    if (squaresFilled >= 9){
+    if(calculateWinner(squares)){
+      alert("Game Completed!");
+    }
+    else if (squaresFilled >= 9){
       alert("Game ended in a Draw 🤝");
     }
-    else if (squares[i] || calculateWinner(squares)){
-      alert("Game Completed!");
+    else if (squares[i] && squaresFilled < 9){
+      alert("Click on empty square!");
       return;
     }
     const nextSquares = squares.slice();
-    if (xIsNext){
-      nextSquares[i] = "X";
+    if(squaresFilled < 9 && !calculateWinner(squares)){
+      xIsNext ? nextSquares[i] = "X" : nextSquares[i] = "O";
+      onPlay(nextSquares);
     }
-    else {
-      nextSquares[i] = "O";
-    }
-    onPlay(nextSquares);
-      
-    // setSquares(nextSquares);
-    // setXIsNext(!xIsNext);
+
   }
 
   return (
